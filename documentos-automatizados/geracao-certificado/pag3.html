@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .esconder {
+        display: none;
+      }
+      .cantinho {
+        margin: 3px;
+      }
+      .format-fonte{
+        font-size: 11px;
+      }
+      
+    </style>
+
+  </head>
+  <body>
+      <p>Gerar Certificado?</p>
+      <!-- Button trigger modal -->
+      <button type="submit" class="gerar btn btn-primary cantinho">Gerar documento</button>
+      <button type="submit" class="btn btn-secondary" data-mdb-dismiss="modal" onclick="google.script.host.close()">Cancelar</button>
+      <div class='esconder'>
+        <p class="format-fonte">Gerando documento PDF. Aguarde...</p>
+      </div>
+
+<script>
+function chama(){
+  let container = document.querySelector('.esconder');
+    
+  if(container.style.display === 'block') {
+      container.style.display = 'none';
+  } else {
+      container.style.display = 'block';
+  }
+
+
+  google.script.run.certificado()
+  Utilities.sleep(5*1000)
+  //google.script.host.close();
+  //let pdfFile = google.script.run.voluntariado()
+  
+
+  //window.open(google.script.run.voluntariado(), "_blank", "width=600,height=800");
+  
+  //let tmlString = 'window.open("##URL##", "##TYPE##", "width=600,height=800");'
+  //htmlString = htmlString.replace("##URL##", "'" + pdfFile + "'");
+  //htmlString = htmlString.replace("##TYPE##", "'_blank'");
+
+
+}
+  
+  
+  document.querySelector('.gerar').addEventListener('click', chama);
+
+</script>
+  </body>
+</html>
